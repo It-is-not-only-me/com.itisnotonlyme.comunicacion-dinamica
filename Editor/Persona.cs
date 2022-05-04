@@ -23,13 +23,9 @@ namespace ItIsNotOnlyMe.ComunicacionDinamica
             return true;
         }
 
-        public bool ActualizarVinculo(IPersona persona, IImportancia importancia)
+        public bool RomperVinculo(IVinculo vinculo)
         {
-            IVinculo vinculoExistente = VinculoIgual(persona);
-            if (vinculoExistente == null)
-                return false;
-
-            return vinculoExistente.Actualizar(importancia);
+            return _vinculos.Remove(vinculo);
         }
 
         public void MandarMensaje(IMensaje mensaje)
@@ -52,11 +48,6 @@ namespace ItIsNotOnlyMe.ComunicacionDinamica
         private IVinculo VinculoIgual(IVinculo vinculo)
         {
             return _vinculos.Find(vinculado => vinculado.MismoVinculo(vinculo));
-        }
-
-        private IVinculo VinculoIgual(IPersona persona)
-        {
-            return _vinculos.Find(vinculado => vinculado.TieneVinculo(persona));
         }
     }
 }

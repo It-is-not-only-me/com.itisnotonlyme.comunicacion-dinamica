@@ -5,9 +5,9 @@ namespace ItIsNotOnlyMe.ComunicacionDinamica
 {
     public interface IPersona
     {
-        public bool CrearVinculo(IVinculo nuevoVinculo);
+        public bool CrearVinculo(IVinculo vinculo);
 
-        public bool ActualizarVinculo(IPersona persona, IImportancia importancia);
+        public bool RomperVinculo(IVinculo vinculo);
 
         public void MandarMensaje(IMensaje mensaje);
 

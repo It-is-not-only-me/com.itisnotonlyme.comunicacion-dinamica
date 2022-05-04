@@ -3,37 +3,20 @@ using NUnit.Framework;
 using System.Linq;
 using ItIsNotOnlyMe.ComunicacionDinamica;
 
-public class PersonaTest
+public partial class PersonaTest
 {
-    private class ImportanciaPreuba : IImportancia
-    {
-        public int ValorImportancia => _importancia;
-        private int _importancia;
-
-        public ImportanciaPreuba(int importancia)
-        {
-            _importancia = importancia;
-        }
-
-
-        public bool EsMayorIgual(IImportancia importancia)
-        {
-            return _importancia >= importancia.ValorImportancia;
-        }
-    }
-
     [Test]
     public void Test01PersonaCreaUnVinculoYReceptorRecibeElMensaje()
     {
         IPersona persona = new Persona();
         IPersona receptor = new Persona();
-        IImportancia importanciaReceptor = new ImportanciaPreuba(5);
+        IImportancia importanciaReceptor = new ImportanciaPrueba(5);
 
         bool pudoCrearVinculo = persona.CrearVinculo(new Vinculo(receptor, importanciaReceptor));
 
         Assert.IsTrue(pudoCrearVinculo);
 
-        IImportancia importanciaMensaje = new ImportanciaPreuba(3);
+        IImportancia importanciaMensaje = new ImportanciaPrueba(3);
         IMensaje mensaje = new Mensaje(importanciaMensaje);
 
         persona.MandarMensaje(mensaje);
@@ -48,13 +31,13 @@ public class PersonaTest
     {
         IPersona persona = new Persona();
         IPersona receptor = new Persona();
-        IImportancia importanciaReceptor = new ImportanciaPreuba(3);
+        IImportancia importanciaReceptor = new ImportanciaPrueba(3);
 
         bool pudoCrearVinculo = persona.CrearVinculo(new Vinculo(receptor, importanciaReceptor));
 
         Assert.IsTrue(pudoCrearVinculo);
 
-        IImportancia importanciaMensaje = new ImportanciaPreuba(5);
+        IImportancia importanciaMensaje = new ImportanciaPrueba(5);
         IMensaje mensaje = new Mensaje(importanciaMensaje);
 
         persona.MandarMensaje(mensaje);
@@ -68,12 +51,12 @@ public class PersonaTest
     public void Test03CadenaDeTresPersonasRecibenElMensaje()
     {
         IPersona personaInicio = new Persona(), personaMedio = new Persona(), personaFinal = new Persona();
-        IImportancia importanciaGeneral = new ImportanciaPreuba(3);
+        IImportancia importanciaGeneral = new ImportanciaPrueba(3);
 
         personaInicio.CrearVinculo(new Vinculo(personaMedio, importanciaGeneral));
         personaMedio.CrearVinculo(new Vinculo(personaFinal, importanciaGeneral));
 
-        IImportancia importanciaMensaje = new ImportanciaPreuba(2);
+        IImportancia importanciaMensaje = new ImportanciaPrueba(2);
         IMensaje mensaje = new Mensaje(importanciaMensaje);
 
         personaInicio.MandarMensaje(mensaje);
@@ -87,13 +70,13 @@ public class PersonaTest
     public void Test04CadenaDeTresPersonaConLoopRecibenElMensaje()
     {
         IPersona personaInicio = new Persona(), personaMedio = new Persona(), personaFinal = new Persona();
-        IImportancia importanciaGeneral = new ImportanciaPreuba(3);
+        IImportancia importanciaGeneral = new ImportanciaPrueba(3);
 
         personaInicio.CrearVinculo(new Vinculo(personaMedio, importanciaGeneral));
         personaMedio.CrearVinculo(new Vinculo(personaFinal, importanciaGeneral));
         personaFinal.CrearVinculo(new Vinculo(personaInicio, importanciaGeneral));
 
-        IImportancia importanciaMensaje = new ImportanciaPreuba(2);
+        IImportancia importanciaMensaje = new ImportanciaPrueba(2);
         IMensaje mensaje = new Mensaje(importanciaMensaje);
 
         personaInicio.MandarMensaje(mensaje);
@@ -110,8 +93,8 @@ public class PersonaTest
         IPersona personaSinImportancia = new Persona(), personaConImportancia = new Persona();
         IPersona personaFinal = new Persona();
 
-        IImportancia importanciaSuficiente = new ImportanciaPreuba(5);
-        IImportancia importanciaInsuficiente = new ImportanciaPreuba(3);
+        IImportancia importanciaSuficiente = new ImportanciaPrueba(5);
+        IImportancia importanciaInsuficiente = new ImportanciaPrueba(3);
 
         personaInicio.CrearVinculo(new Vinculo(personaSinImportancia, importanciaInsuficiente));
         personaInicio.CrearVinculo(new Vinculo(personaConImportancia, importanciaSuficiente));
@@ -119,7 +102,7 @@ public class PersonaTest
         personaSinImportancia.CrearVinculo(new Vinculo(personaFinal, importanciaSuficiente));
         personaConImportancia.CrearVinculo(new Vinculo(personaFinal, importanciaSuficiente));
 
-        IImportancia importanciaMensaje = new ImportanciaPreuba(4);
+        IImportancia importanciaMensaje = new ImportanciaPrueba(4);
         IMensaje mensaje = new Mensaje(importanciaMensaje);
         personaInicio.MandarMensaje(mensaje);
 
@@ -135,16 +118,17 @@ public class PersonaTest
         IPersona personaSinImportancia = new Persona(), personaConImportancia = new Persona();
         IPersona personaFinal = new Persona();
 
-        IImportancia importanciaSuficiente = new ImportanciaPreuba(5);
-        IImportancia importanciaInsuficiente = new ImportanciaPreuba(3);
+        IImportancia importanciaSuficiente = new ImportanciaPrueba(5);
+        IImportancia importanciaInsuficiente = new ImportanciaPrueba(3);
 
         personaInicio.CrearVinculo(new Vinculo(personaSinImportancia, importanciaInsuficiente));
         personaInicio.CrearVinculo(new Vinculo(personaConImportancia, importanciaSuficiente));
 
         personaSinImportancia.CrearVinculo(new Vinculo(personaFinal, importanciaSuficiente));
-        personaConImportancia.CrearVinculo(new Vinculo(personaFinal, importanciaSuficiente));
+        IVinculo vinculoSuficiente = new Vinculo(personaFinal, importanciaSuficiente);
+        personaConImportancia.CrearVinculo(vinculoSuficiente);
 
-        IImportancia importanciaMensaje = new ImportanciaPreuba(4);
+        IImportancia importanciaMensaje = new ImportanciaPrueba(4);
         IMensaje mensaje = new Mensaje(importanciaMensaje);
         personaInicio.MandarMensaje(mensaje);
 
@@ -152,7 +136,11 @@ public class PersonaTest
         Assert.IsTrue(mensajesRecibidos.Contains(mensaje));
 
         IMensaje nuevoMensaje = new Mensaje(importanciaMensaje);
-        personaConImportancia.ActualizarVinculo(personaFinal, importanciaInsuficiente);
+
+        bool seRompioVinculo = personaConImportancia.RomperVinculo(vinculoSuficiente);
+        Assert.IsTrue(seRompioVinculo);
+
+        personaConImportancia.CrearVinculo(new Vinculo(personaSinImportancia, importanciaInsuficiente));
         personaInicio.MandarMensaje(nuevoMensaje);
 
         mensajesRecibidos = personaFinal.MensajesRecibidos().ToList();
