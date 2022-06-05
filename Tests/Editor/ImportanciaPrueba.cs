@@ -10,9 +10,9 @@ public class ImportanciaPrueba : IImportancia
         _importancia = importancia;
     }
 
-
     public bool EsMayorIgual(IImportancia importancia)
     {
-        return _importancia >= importancia.ValorImportancia;
+        ImportanciaPrueba importanciaPrueba = importancia as ImportanciaPrueba;
+        return _importancia >= importanciaPrueba.ValorImportancia;
     }
 }

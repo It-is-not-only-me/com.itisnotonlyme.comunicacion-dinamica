@@ -2,7 +2,7 @@
 {
     public class Mensaje : IMensaje
     {
-        private IImportancia _importancia;
+        protected IImportancia _importancia;
 
         public Mensaje(IImportancia importancia)
         {

@@ -2,8 +2,8 @@
 {
     public class Vinculo : IVinculo
     {
-        private IPersona _persona;
-        private IImportancia _importancia;
+        protected IPersona _persona;
+        protected IImportancia _importancia;
 
         public Vinculo(IPersona persona, IImportancia importancia)
         {

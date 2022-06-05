@@ -5,6 +5,15 @@ using ItIsNotOnlyMe.ComunicacionDinamica;
 
 public partial class PersonaTest
 {
+    public class PersonaPrueba : Persona
+    {
+        public IEnumerable<IMensaje> MensajesRecibidos()
+        {
+            foreach (IMensaje mensaje in _mensajes)
+                yield return mensaje;
+        }
+    }
+
     [Test]
     public void Test01PersonaCreaUnVinculoYReceptorRecibeElMensaje()
     {
@@ -21,7 +30,7 @@ public partial class PersonaTest
 
         persona.MandarMensaje(mensaje);
 
-        List<IMensaje> mensajesRecibidos = receptor.MensajesRecibidos().ToList();
+        List<IMensaje> mensajesRecibidos = (receptor as PersonaPrueba).MensajesRecibidos().ToList();
 
         Assert.IsTrue(mensajesRecibidos.Contains(mensaje));
     }
@@ -42,7 +51,7 @@ public partial class PersonaTest
 
         persona.MandarMensaje(mensaje);
 
-        List<IMensaje> mensajesRecibidos = receptor.MensajesRecibidos().ToList();
+        List<IMensaje> mensajesRecibidos = (receptor as PersonaPrueba).MensajesRecibidos().ToList();
 
         Assert.IsFalse(mensajesRecibidos.Contains(mensaje));
     }
@@ -61,7 +70,7 @@ public partial class PersonaTest
 
         personaInicio.MandarMensaje(mensaje);
 
-        List<IMensaje> mensajesRecibidos = personaFinal.MensajesRecibidos().ToList();
+        List<IMensaje> mensajesRecibidos = (personaFinal as PersonaPrueba).MensajesRecibidos().ToList();
 
         Assert.IsTrue(mensajesRecibidos.Contains(mensaje));
     }
@@ -81,7 +90,7 @@ public partial class PersonaTest
 
         personaInicio.MandarMensaje(mensaje);
 
-        List<IMensaje> mensajesRecibidos = personaFinal.MensajesRecibidos().ToList();
+        List<IMensaje> mensajesRecibidos = (personaFinal as PersonaPrueba).MensajesRecibidos().ToList();
 
         Assert.IsTrue(mensajesRecibidos.Contains(mensaje));
     }
@@ -106,7 +115,7 @@ public partial class PersonaTest
         IMensaje mensaje = new Mensaje(importanciaMensaje);
         personaInicio.MandarMensaje(mensaje);
 
-        List<IMensaje> mensajesRecibidos = personaFinal.MensajesRecibidos().ToList();
+        List<IMensaje> mensajesRecibidos = (personaFinal as PersonaPrueba).MensajesRecibidos().ToList();
 
         Assert.IsTrue(mensajesRecibidos.Contains(mensaje));
     }
@@ -132,7 +141,7 @@ public partial class PersonaTest
         IMensaje mensaje = new Mensaje(importanciaMensaje);
         personaInicio.MandarMensaje(mensaje);
 
-        List<IMensaje> mensajesRecibidos = personaFinal.MensajesRecibidos().ToList();
+        List<IMensaje> mensajesRecibidos = (personaFinal as PersonaPrueba).MensajesRecibidos().ToList();
         Assert.IsTrue(mensajesRecibidos.Contains(mensaje));
 
         IMensaje nuevoMensaje = new Mensaje(importanciaMensaje);
@@ -143,7 +152,7 @@ public partial class PersonaTest
         personaConImportancia.CrearVinculo(new Vinculo(personaSinImportancia, importanciaInsuficiente));
         personaInicio.MandarMensaje(nuevoMensaje);
 
-        mensajesRecibidos = personaFinal.MensajesRecibidos().ToList();
+        mensajesRecibidos = (personaFinal as PersonaPrueba).MensajesRecibidos().ToList();
         Assert.IsFalse(mensajesRecibidos.Contains(nuevoMensaje));
     }
 }

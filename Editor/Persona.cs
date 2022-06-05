@@ -4,8 +4,8 @@ namespace ItIsNotOnlyMe.ComunicacionDinamica
 {
     public class Persona : IPersona
     {
-        private List<IVinculo> _vinculos;
-        private List<IMensaje> _mensajes;
+        protected List<IVinculo> _vinculos;
+        protected List<IMensaje> _mensajes;
 
         public Persona()
         {
@@ -37,12 +37,6 @@ namespace ItIsNotOnlyMe.ComunicacionDinamica
             foreach (IVinculo vinculo in _vinculos)
                 if (vinculo.MereceMandarMensaje(mensaje))
                     vinculo.MandarMensaje(mensaje);
-        }
-
-        public IEnumerable<IMensaje> MensajesRecibidos()
-        {
-            foreach (IMensaje mensaje in _mensajes)
-                yield return mensaje;
         }
 
         private IVinculo VinculoIgual(IVinculo vinculo)
