@@ -17,8 +17,8 @@ public partial class PersonaTest
     [Test]
     public void Test01PersonaCreaUnVinculoYReceptorRecibeElMensaje()
     {
-        IPersona persona = new Persona();
-        IPersona receptor = new Persona();
+        IPersona persona = new PersonaPrueba();
+        IPersona receptor = new PersonaPrueba();
         IImportancia importanciaReceptor = new ImportanciaPrueba(5);
 
         bool pudoCrearVinculo = persona.CrearVinculo(new Vinculo(receptor, importanciaReceptor));
@@ -38,8 +38,8 @@ public partial class PersonaTest
     [Test]
     public void Test02PersonaCreaUnVinculoYReceptorNoSuficientementeImportanteNoRecibeElMensaje()
     {
-        IPersona persona = new Persona();
-        IPersona receptor = new Persona();
+        IPersona persona = new PersonaPrueba();
+        IPersona receptor = new PersonaPrueba();
         IImportancia importanciaReceptor = new ImportanciaPrueba(3);
 
         bool pudoCrearVinculo = persona.CrearVinculo(new Vinculo(receptor, importanciaReceptor));
@@ -59,7 +59,7 @@ public partial class PersonaTest
     [Test]
     public void Test03CadenaDeTresPersonasRecibenElMensaje()
     {
-        IPersona personaInicio = new Persona(), personaMedio = new Persona(), personaFinal = new Persona();
+        IPersona personaInicio = new PersonaPrueba(), personaMedio = new PersonaPrueba(), personaFinal = new PersonaPrueba();
         IImportancia importanciaGeneral = new ImportanciaPrueba(3);
 
         personaInicio.CrearVinculo(new Vinculo(personaMedio, importanciaGeneral));
@@ -78,7 +78,7 @@ public partial class PersonaTest
     [Test]
     public void Test04CadenaDeTresPersonaConLoopRecibenElMensaje()
     {
-        IPersona personaInicio = new Persona(), personaMedio = new Persona(), personaFinal = new Persona();
+        IPersona personaInicio = new PersonaPrueba(), personaMedio = new PersonaPrueba(), personaFinal = new PersonaPrueba();
         IImportancia importanciaGeneral = new ImportanciaPrueba(3);
 
         personaInicio.CrearVinculo(new Vinculo(personaMedio, importanciaGeneral));
@@ -98,9 +98,9 @@ public partial class PersonaTest
     [Test]
     public void Test05DosCaminosParaLlegarAUnaPersonaPeroUnoSinSuficienteImportancia()
     {
-        IPersona personaInicio = new Persona();
-        IPersona personaSinImportancia = new Persona(), personaConImportancia = new Persona();
-        IPersona personaFinal = new Persona();
+        IPersona personaInicio = new PersonaPrueba();
+        IPersona personaSinImportancia = new PersonaPrueba(), personaConImportancia = new PersonaPrueba();
+        IPersona personaFinal = new PersonaPrueba();
 
         IImportancia importanciaSuficiente = new ImportanciaPrueba(5);
         IImportancia importanciaInsuficiente = new ImportanciaPrueba(3);
@@ -123,9 +123,9 @@ public partial class PersonaTest
     [Test]
     public void Test06DosCaminosPeroAlActualizarNoHayCamino()
     {
-        IPersona personaInicio = new Persona();
-        IPersona personaSinImportancia = new Persona(), personaConImportancia = new Persona();
-        IPersona personaFinal = new Persona();
+        IPersona personaInicio = new PersonaPrueba();
+        IPersona personaSinImportancia = new PersonaPrueba(), personaConImportancia = new PersonaPrueba();
+        IPersona personaFinal = new PersonaPrueba();
 
         IImportancia importanciaSuficiente = new ImportanciaPrueba(5);
         IImportancia importanciaInsuficiente = new ImportanciaPrueba(3);
