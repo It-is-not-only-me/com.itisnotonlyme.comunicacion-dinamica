@@ -1,6 +1,6 @@
 {
     "name": "com.itisnotonlyme.comunicacion-dinamica",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "displayName": "Comunicacion Dinamica",
     "description": "La idea es dar las herramientas basicas para implementar un sistema de comunicacion donde la informacion puede moverse de forma natural",
     "unity": "2020.3",
