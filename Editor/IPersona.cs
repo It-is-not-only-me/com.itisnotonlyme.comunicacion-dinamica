@@ -10,7 +10,5 @@ namespace ItIsNotOnlyMe.ComunicacionDinamica
         public bool RomperVinculo(IVinculo vinculo);
 
         public void MandarMensaje(IMensaje mensaje);
-
-        public IEnumerable<IMensaje> MensajesRecibidos();
     }
 }
