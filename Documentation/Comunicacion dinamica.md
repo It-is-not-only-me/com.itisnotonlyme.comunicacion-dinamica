@@ -9,6 +9,9 @@ Tenemos las 4 interfaces:
 
 De todos estos, solo la interfaz IImportancia no tiene una clase concentra que la implementa.
 
+#### Diagrama
+![Diagrama de interfaces](Diagrama%20de%20interfaces.png "Diagrama de interfaces")
+
 ### IPersona
 ---
 
